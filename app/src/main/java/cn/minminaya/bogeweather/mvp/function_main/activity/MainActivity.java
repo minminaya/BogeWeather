@@ -1,22 +1,26 @@
 package cn.minminaya.bogeweather.mvp.function_main.activity;
 
+import android.graphics.Color;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.Toast;
+import android.view.Gravity;
+
+import com.blankj.utilcode.util.BarUtils;
+import com.blankj.utilcode.util.ConvertUtils;
+import com.tmall.ultraviewpager.UltraViewPager;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 import cn.minminaya.bogeweather.R;
 import cn.minminaya.bogeweather.mvp.base.BaseActivity;
 import cn.minminaya.bogeweather.mvp.base.view.MvpView;
+import cn.minminaya.bogeweather.mvp.function_main.adapter.UltraViewpageAdapter;
 import cn.minminaya.bogeweather.mvp.function_main.presenter.MainPresenter;
 
 public class MainActivity extends BaseActivity implements MvpView {
 
+    @BindView(R.id.ids_view_pager)
+    UltraViewPager mViewPager;
     private MainPresenter mainPresenter = new MainPresenter();
 
-    @BindView(R.id.btn1)
-    Button btn1;
 
     @Override
     public int getContentView() {
@@ -25,6 +29,22 @@ public class MainActivity extends BaseActivity implements MvpView {
 
     @Override
     public void initView(Bundle savedInstanceState) {
+
+        BarUtils.setStatusBarColor(this, Color.parseColor("#3F51B5"), 20, false);
+
+        mViewPager.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL);
+        UltraViewpageAdapter adapter = new UltraViewpageAdapter(getSupportFragmentManager());
+        mViewPager.setAdapter(adapter);
+
+        //配置指示器
+        mViewPager.initIndicator()
+                .setOrientation(UltraViewPager.Orientation.HORIZONTAL)
+                .setFocusColor(Color.WHITE)
+                .setNormalColor(Color.GRAY)
+                .setRadius(ConvertUtils.dp2px(3))
+                .setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM)
+                .setMargin(0, 0, 0, ConvertUtils.dp2px(5))
+                .build();
 
     }
 
@@ -44,13 +64,9 @@ public class MainActivity extends BaseActivity implements MvpView {
         mainPresenter.detachView(this);
     }
 
-    @OnClick(R.id.btn1)
-    public void onViewClicked() {
-        Toast.makeText(this, "visible", Toast.LENGTH_SHORT).show();
-    }
-
     @Override
     public void onFailed(Throwable e) {
 
     }
+
 }

@@ -10,6 +10,8 @@ package cn.minminaya.bogeweather;
 
 import android.app.Application;
 
+import com.blankj.utilcode.util.Utils;
+
 /**
  * Created by Niwa on 2018/1/16.
  */
@@ -25,5 +27,6 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         INSTANCE = this;
+        Utils.init(this);
     }
 }

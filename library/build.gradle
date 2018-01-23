@@ -25,42 +25,55 @@ android {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-//    implementation 'com.android.support:appcompat-v7:27.0.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    testApi 'junit:junit:4.12'
+    androidTestApi 'com.android.support.test:runner:1.0.1'
+    androidTestApi 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+    api 'com.android.support:appcompat-v7:27.0.2'
+    api 'com.android.support:support-v4:27.0.2'
+    api 'com.android.support:support-annotations:27.0.2'
+
+    api 'com.jakewharton:butterknife:8.8.1'
+
+
 
     //这个包里集成了okhttp3.6
-    implementation 'com.squareup.retrofit2:retrofit:2.2.0'
+    api 'com.squareup.retrofit2:retrofit:2.2.0'
     //使retrofit2支持gson的转换
-    implementation 'com.squareup.retrofit2:converter-gson:2.2.0'
+    api 'com.squareup.retrofit2:converter-gson:2.2.0'
 
     //Retrofit对Rxjava的支持
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
+    api 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
 
     //包含了RxJAVA2.0.1和Rxandroid2.0.1
-    compile 'com.trello.rxlifecycle2:rxlifecycle:2.0.1'
-    compile 'com.trello.rxlifecycle2:rxlifecycle-components:2.0.1'
+    api 'com.trello.rxlifecycle2:rxlifecycle:2.0.1'
+    api 'com.trello.rxlifecycle2:rxlifecycle-components:2.0.1'
 
-    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    api 'com.github.bumptech.glide:glide:3.7.0'
 
-    implementation 'com.shizhefei:ViewPagerIndicator:1.1.6'
 
-    implementation 'com.android.support:support-v4:27.0.2'
+    api 'com.android.support:support-v4:27.0.2'
 
-    implementation('com.github.hotchemi:permissionsdispatcher:2.4.0') {
+    api('com.github.hotchemi:permissionsdispatcher:2.4.0') {
 //         if you don't use android.app.Fragment you can exclude support for them
         exclude module: "support-v13"
     }
     //模糊
-    implementation 'com.github.mmin18:realtimeblurview:1.1.0'
+    api 'com.github.mmin18:realtimeblurview:1.1.0'
     //BoomMenu
-    implementation 'com.nightonke:boommenu:2.1.1'
+    api 'com.nightonke:boommenu:2.1.1'
 
-    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.4-7'
-    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.4-7'//没有使用特殊Header，可以不加这行
-    implementation 'com.android.support:design:27.0.2'
+    api 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.4-7'
+    api 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.4-7'//没有使用特殊Header，可以不加这行
+    api 'com.android.support:design:27.0.2'
 
-    implementation 'com.orhanobut:hawk:2.0.1'
+    api 'com.orhanobut:hawk:2.0.1'
+
+    api 'com.blankj:utilcode:1.12.0'
+
+    api ('com.alibaba.android:ultraviewpager:1.0.6.1@aar') {
+        transitive = true
+    }
+
 }
