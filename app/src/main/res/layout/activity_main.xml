@@ -11,11 +11,28 @@
         android:layout_height="25dp" />
 
     <com.tmall.ultraviewpager.UltraViewPager
+        android:layout_marginTop="-2dp"
         android:id="@+id/ids_view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/ids_anchor"
-        android:layout_marginTop="-1dp" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/ids_anchor" />
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/ids_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_below="@id/ids_anchor">
+
+        <TextView
+            android:id="@+id/ids_toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="ShangHai"
+            android:textColor="@android:color/white"
+            android:textSize="21sp" />
+    </android.support.v7.widget.Toolbar>
 
 </RelativeLayout>
 

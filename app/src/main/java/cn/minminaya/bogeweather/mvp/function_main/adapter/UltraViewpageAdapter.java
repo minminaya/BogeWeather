@@ -20,11 +20,11 @@ public class UltraViewpageAdapter extends FragmentStatePagerAdapter {
     public UltraViewpageAdapter(FragmentManager fm) {
         super(fm);
         Fragment fragment1 = WeatherItemFragment.newInstance();
-//        Fragment fragment2 = WeatherItemFragment.newInstance();
+        Fragment fragment2 = WeatherItemFragment.newInstance();
 //        Fragment fragment3 = WeatherItemFragment.newInstance();
 //        Fragment fragment4 = WeatherItemFragment.newInstance();
         fragmentList.add(fragment1);
-//        fragmentList.add(fragment2);
+        fragmentList.add(fragment2);
 //        fragmentList.add(fragment3);
 //        fragmentList.add(fragment4);
     }

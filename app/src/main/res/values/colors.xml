@@ -5,18 +5,20 @@
     <color name="colorAccent">#FF4081</color>
 
 
-    <color name="green_51c0f8">#51c0f8</color>
-    <color name="blue_7f9ee9">#7f9ee9</color>
-    <color name="green_4dbfef">#4dbfef</color>
-    <color name="blue_6d8db1">#6d8db1</color>
-    <color name="blue_6188da">#6188da</color>
-    <color name="blue_7187db">#7187db</color>
-    <color name="blue_5697d8">#5697d8</color>
-    <color name="green_62b1ff">#62b1ff</color>
-    <color name="green_0cb399">#0cb399</color>
-    <color name="green_8cadd3">#8cadd3</color>
-    <color name="gray_7f8195">#7f8195</color>
-    <color name="yellow_e99e3c">#e99e3c</color>
+    <color name="green_sunny_light_4EC0F6">#4EC0F6</color>
+    <color name="blue_sunny_night_7C9EE6">#7C9EE6</color>
+    <color name="green_cloudy_4ABFEB">#4ABFEB</color>
+    <color name="blue_overcast_6D8EB1">#6D8EB1</color>
+    <color name="blue_rain_only_6188DA">#6188DA</color>
+    <color name="blue_rain_thunder_7187DB">#7187DB</color>
+    <color name="blue_sleet_5697D8">#5697D8</color>
+    <color name="green_snow_62b1ff">#62B1FF</color>
+    <color name="green_hail_0cb399">#0CB399</color>
+    <color name="green_fog_8cadd3">#8cadd3</color>
+    <color name="gray_haze_pollution_7f8195">#7F8195</color>
+    <color name="yellow_sandstorm_e99e3c">#e99e3c</color>
+
+    <color name="gray_text_EBEFF4">#EBEFF4</color>
 
 
 </resources>

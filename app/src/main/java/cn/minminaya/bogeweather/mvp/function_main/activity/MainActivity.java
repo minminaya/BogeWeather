@@ -30,7 +30,7 @@ public class MainActivity extends BaseActivity implements MvpView {
     @Override
     public void initView(Bundle savedInstanceState) {
 
-        BarUtils.setStatusBarColor(this, Color.parseColor("#3F51B5"), 20, false);
+        BarUtils.setStatusBarColor(this, Color.parseColor("#0cb399"), 20, false);
 
         mViewPager.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL);
         UltraViewpageAdapter adapter = new UltraViewpageAdapter(getSupportFragmentManager());
@@ -42,8 +42,8 @@ public class MainActivity extends BaseActivity implements MvpView {
                 .setFocusColor(Color.WHITE)
                 .setNormalColor(Color.GRAY)
                 .setRadius(ConvertUtils.dp2px(3))
-                .setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM)
-                .setMargin(0, 0, 0, ConvertUtils.dp2px(5))
+                .setGravity(Gravity.CENTER_HORIZONTAL | Gravity.TOP)
+                .setMargin(0, ConvertUtils.dp2px(45), 0, 0)
                 .build();
 
     }
