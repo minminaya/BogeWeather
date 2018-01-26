@@ -8,10 +8,9 @@
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/holo_red_dark"
         app:srlAccentColor="@android:color/white"
         app:srlEnableAutoLoadmore="true"
-        app:srlEnableHeaderTranslationContent="true"
+        app:srlEnableHeaderTranslationContent="false"
         app:srlPrimaryColor="#15A084">
 
         <com.scwang.smartrefresh.header.WaveSwipeHeader
@@ -22,6 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -31,7 +31,24 @@
                     android:id="@+id/ids_pic_view"
                     android:layout_width="match_parent"
                     android:layout_height="320dp"
-                    android:background="@color/green_hail_0cb399">
+                    android:background="@color/green_hail_0cb399_10">
+
+                    <android.support.v7.widget.Toolbar
+                        android:id="@+id/ids_toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="@dimen/status_bar_height">
+
+                        <TextView
+                            android:id="@+id/ids_toolbar_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="ShangHai"
+                            android:textColor="@android:color/white"
+                            android:textSize="21sp" />
+                    </android.support.v7.widget.Toolbar>
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -43,18 +60,19 @@
                             android:id="@+id/ids_tv_temporary"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="70dp"
+                            android:layout_marginEnd="-5dp"
+                            android:layout_toStartOf="@+id/ids_tv_temporary_anchor"
+                            android:gravity="end"
                             android:includeFontPadding="false"
                             android:text="20"
                             android:textColor="@color/gray_text_EBEFF4"
                             android:textSize="90sp" />
 
                         <TextView
+                            android:id="@+id/ids_tv_temporary_anchor"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
-                            android:layout_marginStart="-5dp"
-                            android:layout_toEndOf="@id/ids_tv_temporary"
+                            android:layout_centerHorizontal="true"
                             android:includeFontPadding="false"
                             android:text="°"
                             android:textColor="@color/gray_text_EBEFF4"
@@ -72,6 +90,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerHorizontal="true"
                                 android:layout_marginTop="16dp"
+                                android:gravity="center"
                                 android:includeFontPadding="false"
                                 android:text="Sunny"
                                 android:textColor="@color/gray_text_EBEFF4"
@@ -83,7 +102,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentStart="true"
                                 android:layout_below="@+id/ids_tv_weather"
-                                android:layout_marginTop="5dp"
+                                android:layout_marginTop="3dp"
                                 android:orientation="horizontal">
 
                                 <ImageView
@@ -138,14 +157,15 @@
                 </RelativeLayout>
 
                 <ImageView
+                    android:id="@+id/ids_img_pic"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:src="@drawable/pic_hail" />
 
-                <View
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/ids_recycler_view_hourly"
                     android:layout_width="match_parent"
-                    android:layout_height="130dp"
-                    android:background="@color/blue_rain_thunder_7187DB" />
+                    android:layout_height="130dp" />
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>

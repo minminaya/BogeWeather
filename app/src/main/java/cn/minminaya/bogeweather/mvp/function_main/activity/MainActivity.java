@@ -2,7 +2,10 @@ package cn.minminaya.bogeweather.mvp.function_main.activity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.ColorInt;
+import android.support.annotation.IntRange;
 import android.view.Gravity;
+import android.widget.TextView;
 
 import com.blankj.utilcode.util.BarUtils;
 import com.blankj.utilcode.util.ConvertUtils;
@@ -30,8 +33,9 @@ public class MainActivity extends BaseActivity implements MvpView {
     @Override
     public void initView(Bundle savedInstanceState) {
 
-        BarUtils.setStatusBarColor(this, Color.parseColor("#0cb399"), 20, false);
+        BarUtils.setStatusBarAlpha(this,30);
 
+        BarUtils.setNavBarVisibility(this, false);
         mViewPager.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL);
         UltraViewpageAdapter adapter = new UltraViewpageAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(adapter);
@@ -43,7 +47,7 @@ public class MainActivity extends BaseActivity implements MvpView {
                 .setNormalColor(Color.GRAY)
                 .setRadius(ConvertUtils.dp2px(3))
                 .setGravity(Gravity.CENTER_HORIZONTAL | Gravity.TOP)
-                .setMargin(0, ConvertUtils.dp2px(45), 0, 0)
+                .setMargin(0, ConvertUtils.dp2px(70), 0, 0)
                 .build();
 
     }
@@ -68,5 +72,7 @@ public class MainActivity extends BaseActivity implements MvpView {
     public void onFailed(Throwable e) {
 
     }
+
+
 
 }

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="70dp"
+    android:layout_height="130dp">
+
+    <TextView
+        android:layout_marginTop="30dp"
+        android:id="@+id/ids_tv_hourly_temporary"
+        android:layout_width="wrap_content"
+        android:layout_height="26dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="-4℃"
+        android:textColor="@android:color/black"
+        android:textSize="15sp" />
+
+    <ImageView
+        android:id="@+id/ids_img_hourly"
+        android:layout_width="wrap_content"
+        android:layout_height="26dp"
+        android:layout_below="@id/ids_tv_hourly_temporary"
+        android:layout_centerHorizontal="true"
+        android:src="@mipmap/icon_weather_0" />
+
+    <TextView
+        android:id="@+id/ids_tv_hourly_time"
+        android:layout_width="wrap_content"
+        android:layout_height="26dp"
+        android:layout_below="@id/ids_img_hourly"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="11:00"
+        android:textColor="@android:color/black"
+        android:textSize="10sp" />
+</RelativeLayout>
