@@ -21,7 +21,7 @@ import cn.minminaya.bogeweather.mvp.function_main.presenter.MainPresenter;
 public class MainActivity extends BaseActivity implements MvpView {
 
     @BindView(R.id.ids_view_pager)
-    UltraViewPager mViewPager;
+    public UltraViewPager mViewPager;
     private MainPresenter mainPresenter = new MainPresenter();
 
 

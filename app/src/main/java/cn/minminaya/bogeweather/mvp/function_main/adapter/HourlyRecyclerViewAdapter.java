@@ -65,7 +65,6 @@ public class HourlyRecyclerViewAdapter extends RecyclerView.Adapter<HourlyRecycl
                     break;
             }
             holder.mImgHourly.setImageResource(imgNumRes);
-            holder.mImgHourly.setImageResource(R.mipmap.icon_weather_0);
             holder.mTvHourlyTemporary.setText(hourlyBeans.get(position).getTemp()+"℃");
             holder.mTvHourlyTime.setText(hourlyBeans.get(position).getTime());
         }
