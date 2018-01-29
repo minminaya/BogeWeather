@@ -36,6 +36,8 @@ public class MainActivity extends BaseActivity implements MvpView {
         BarUtils.setStatusBarAlpha(this,30);
 
         BarUtils.setNavBarVisibility(this, false);
+
+
         mViewPager.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL);
         UltraViewpageAdapter adapter = new UltraViewpageAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(adapter);
@@ -44,7 +46,7 @@ public class MainActivity extends BaseActivity implements MvpView {
         mViewPager.initIndicator()
                 .setOrientation(UltraViewPager.Orientation.HORIZONTAL)
                 .setFocusColor(Color.WHITE)
-                .setNormalColor(Color.GRAY)
+                .setNormalColor(Color.parseColor("#dddddd"))
                 .setRadius(ConvertUtils.dp2px(3))
                 .setGravity(Gravity.CENTER_HORIZONTAL | Gravity.TOP)
                 .setMargin(0, ConvertUtils.dp2px(70), 0, 0)

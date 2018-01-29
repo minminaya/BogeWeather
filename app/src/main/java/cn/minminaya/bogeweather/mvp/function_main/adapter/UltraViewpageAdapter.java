@@ -20,22 +20,24 @@ public class UltraViewpageAdapter extends FragmentStatePagerAdapter {
 
     public UltraViewpageAdapter(FragmentManager fm) {
         super(fm);
-        Fragment fragment1 = WeatherItemFragment.newInstance("上海");
+//        Fragment fragment1 = WeatherItemFragment.newInstance("上海");
         Fragment fragment2 = WeatherItemFragment.newInstance("广州");
         Fragment fragment3 = WeatherItemFragment.newInstance("北京");
-        Fragment fragment4 = WeatherItemFragment.newInstance("湛江");
+//        Fragment fragment4 = WeatherItemFragment.newInstance("湛江");
         Fragment fragment5 = WeatherItemFragment.newInstance("哈尔滨");
-        Fragment fragment6 = WeatherItemFragment.newInstance("西藏");
+//        Fragment fragment6 = WeatherItemFragment.newInstance("西藏");
         Fragment fragment7 = WeatherItemFragment.newInstance("西安");
         Fragment fragment8 = WeatherItemFragment.newInstance("青海");
-        fragmentList.add(fragment1);
+//        Fragment fragment9 = WeatherItemFragment.newInstance("东城区");
+//        fragmentList.add(fragment1);
         fragmentList.add(fragment2);
         fragmentList.add(fragment3);
-        fragmentList.add(fragment4);
+//        fragmentList.add(fragment4);
         fragmentList.add(fragment5);
-        fragmentList.add(fragment6);
+//        fragmentList.add(fragment6);
         fragmentList.add(fragment7);
         fragmentList.add(fragment8);
+//        fragmentList.add(fragment9);
     }
 
     @Override

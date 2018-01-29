@@ -4,13 +4,17 @@ package cn.minminaya.bogeweather.mvp.function_main.fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import cn.minminaya.bogeweather.R;
 import cn.minminaya.bogeweather.mvp.base.BaseFragment;
 import cn.minminaya.bogeweather.mvp.base.view.MvpView;
@@ -41,6 +45,45 @@ public class WeatherItemFragment extends BaseFragment implements MvpView {
 
     @BindView(R.id.ids_recycler_view_hourly)
     RecyclerView mHourlyRecyclerView;
+
+    //以下是未来3天天气控件
+    @BindView(R.id.ids_pic_view_2)
+    public LinearLayout mPicView2;
+    @BindView(R.id.ids_tv_daily_weather_img_tomorrow_1)
+    public ImageView mTvDailyWeatherImgTomorrow1;
+    @BindView(R.id.ids_tv_daily_weather_tomorrow_1)
+    public TextView mTvDailyWeatherTomorrow1;
+    @BindView(R.id.ids_tv_daily_low_temp_tomorrow_1)
+    public TextView mTvDailyLowTempTomorrow1;
+    @BindView(R.id.ids_tv_daily_high_temp_tomorrow_1)
+    public TextView mTvDailyHighTempTomorrow1;
+    @BindView(R.id.ids_tv_daily_weather_img_tomorrow_2)
+    public ImageView mTvDailyWeatherImgTomorrow2;
+    @BindView(R.id.ids_tv_daily_weather_tomorrow_2)
+    public TextView mTvDailyWeatherTomorrow2;
+    @BindView(R.id.ids_tv_daily_low_temp_tomorrow_2)
+    public TextView mTvDailyLowTempTomorrow2;
+    @BindView(R.id.ids_tv_daily_high_temp_tomorrow_2)
+    public TextView mTvDailyHighTempTomorrow2;
+    @BindView(R.id.ids_tv_daily_weather_img_tomorrow_3)
+    public ImageView mTvDailyWeatherImgTomorrow3;
+    @BindView(R.id.ids_tv_daily_weather_tomorrow_3)
+    public TextView mTvDailyWeatherTomorrow3;
+    @BindView(R.id.ids_tv_daily_low_temp_tomorrow_3)
+    public TextView mTvDailyLowTempTomorrow3;
+    @BindView(R.id.ids_tv_daily_high_temp_tomorrow_3)
+    public TextView mTvDailyHighTempTomorrow3;
+    @BindView(R.id.ids_tv_daily_today_name_tomorrow_1)
+    public TextView mTvDailyTodayNameTomorrow1;
+    @BindView(R.id.ids_tv_daily_today_name_tomorrow_2)
+    public TextView mTvDailyTodayNameTomorrow2;
+    @BindView(R.id.ids_tv_daily_today_name_tomorrow_3)
+    public TextView mTvDailyTodayNameTomorrow3;
+    @BindView(R.id.ids_id_tv_aqi_name)
+    public TextView mIdTvAqiName;
+    @BindView(R.id.ids_tv_today_week)
+    public TextView mTvTodayWeek;
+
 
     private String mCurrentCity;
 
@@ -106,10 +149,9 @@ public class WeatherItemFragment extends BaseFragment implements MvpView {
     }
 
 
-
-
     @Override
     public void onFailed(Throwable e) {
 
     }
+
 }

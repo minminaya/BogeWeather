@@ -30,8 +30,7 @@
                 <RelativeLayout
                     android:id="@+id/ids_pic_view"
                     android:layout_width="match_parent"
-                    android:layout_height="320dp"
-                    android:background="@color/green_hail_0cb399_10">
+                    android:layout_height="320dp">
 
                     <android.support.v7.widget.Toolbar
                         android:id="@+id/ids_toolbar"
@@ -45,7 +44,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:text="ShangHai"
+                            android:text="——"
                             android:textColor="@android:color/white"
                             android:textSize="21sp" />
                     </android.support.v7.widget.Toolbar>
@@ -60,11 +59,11 @@
                             android:id="@+id/ids_tv_temporary"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="-5dp"
+                            android:layout_marginEnd="-10dp"
                             android:layout_toStartOf="@+id/ids_tv_temporary_anchor"
                             android:gravity="end"
                             android:includeFontPadding="false"
-                            android:text="20"
+                            android:text="——"
                             android:textColor="@color/gray_text_EBEFF4"
                             android:textSize="90sp" />
 
@@ -73,6 +72,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
+                            android:layout_marginStart="3dp"
                             android:includeFontPadding="false"
                             android:text="°"
                             android:textColor="@color/gray_text_EBEFF4"
@@ -81,8 +81,8 @@
                         <RelativeLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_toEndOf="@+id/ids_tv_temporary_anchor"
-                            android:layout_marginStart="15dp">
+                            android:layout_marginStart="15dp"
+                            android:layout_toEndOf="@+id/ids_tv_temporary_anchor">
 
                             <TextView
                                 android:id="@+id/ids_tv_weather"
@@ -92,7 +92,7 @@
                                 android:layout_marginTop="16dp"
                                 android:gravity="center"
                                 android:includeFontPadding="false"
-                                android:text="Sunny"
+                                android:text="——"
                                 android:textColor="@color/gray_text_EBEFF4"
                                 android:textSize="22sp" />
 
@@ -114,14 +114,14 @@
 
                                 <TextView
                                     android:id="@+id/ids_tv_max_temporary"
-                                    android:layout_width="35dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
                                     android:layout_marginStart="5dp"
                                     android:layout_marginTop="2dp"
                                     android:gravity="end"
                                     android:includeFontPadding="false"
                                     android:paddingEnd="5dp"
-                                    android:text="15℃"
+                                    android:text="--℃"
                                     android:textColor="@color/gray_text_EBEFF4" />
                             </LinearLayout>
 
@@ -139,14 +139,14 @@
 
                                 <TextView
                                     android:id="@+id/ids_tv_mix_temporary"
-                                    android:layout_width="35dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
                                     android:layout_marginStart="5dp"
                                     android:layout_marginTop="2dp"
                                     android:gravity="end"
                                     android:includeFontPadding="false"
                                     android:paddingEnd="5dp"
-                                    android:text="-4℃"
+                                    android:text="--℃"
                                     android:textColor="@color/gray_text_EBEFF4" />
                             </LinearLayout>
 
@@ -156,16 +156,317 @@
 
                 </RelativeLayout>
 
-                <ImageView
-                    android:id="@+id/ids_img_pic"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/pic_hail" />
+                    android:layout_height="190dp">
+
+
+                    <ImageView
+                        android:id="@+id/ids_img_pic"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <RelativeLayout
+                        android:layout_width="100dp"
+                        android:layout_height="45dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="6dp"
+                        android:layout_marginStart="8dp">
+
+                        <ImageView
+                            android:id="@+id/ids_img_aqi"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginStart="10dp"
+                            android:src="@drawable/icon_aqi" />
+
+                        <TextView
+                            android:id="@+id/ids_id_tv_aqi_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="6dp"
+                            android:layout_marginTop="3dp"
+                            android:layout_toEndOf="@id/ids_img_aqi"
+                            android:gravity="start"
+                            android:text="轻度污染"
+                            android:textColor="@android:color/white"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/ids_tv_today_week_anchor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginBottom="2dp"
+                            android:layout_marginStart="10dp"
+                            android:text="今天"
+                            android:textColor="@android:color/white"
+                            android:textSize="12sp" />
+
+                        <android.support.v7.widget.CardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="6dp"
+                            android:layout_toEndOf="@id/ids_tv_today_week_anchor"
+                            app:cardBackgroundColor="#19000000"
+                            app:cardCornerRadius="6dp"
+                            app:cardElevation="0dp"
+                            app:cardPreventCornerOverlap="false">
+
+                            <TextView
+                                android:id="@+id/ids_tv_today_week"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:background="@android:color/transparent"
+                                android:gravity="start"
+                                android:includeFontPadding="false"
+                                android:padding="2dp"
+                                android:paddingEnd="5dp"
+                                android:paddingStart="5dp"
+                                android:text="星期一"
+                                android:textColor="@android:color/white"
+                                android:textSize="12sp" />
+                        </android.support.v7.widget.CardView>
+                    </RelativeLayout>
+
+
+                </RelativeLayout>
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/ids_recycler_view_hourly"
                     android:layout_width="match_parent"
                     android:layout_height="130dp" />
+
+                <LinearLayout
+                    android:id="@+id/ids_pic_view_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/gray_text_6B809C" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp">
+
+                        <TextView
+                            android:id="@+id/ids_tv_daily_today_name_tomorrow_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="20dp"
+                            android:text="——"
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp" />
+
+                        <ImageView
+                            android:id="@+id/ids_tv_daily_weather_img_tomorrow_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_marginEnd="12dp"
+                            android:layout_toStartOf="@+id/ids_tv_daily_weather_tomorrow_1"
+                            android:src="@mipmap/icon_weather_1" />
+
+                        <TextView
+                            android:id="@+id/ids_tv_daily_weather_tomorrow_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="————"
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/ids_tv_daily_low_temp_tomorrow_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="5dp"
+                            android:layout_toStartOf="@id/ids_tv_daily_high_temp_tomorrow_1"
+                            android:gravity="end"
+                            android:text="--°"
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@id/ids_tv_daily_high_temp_tomorrow_1"
+                            android:gravity="end"
+                            android:text="/"
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/ids_tv_daily_high_temp_tomorrow_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="20dp"
+                            android:text="--°"
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp" />
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/gray_text_6B809C" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp">
+
+                        <TextView
+                            android:id="@+id/ids_tv_daily_today_name_tomorrow_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="20dp"
+                            android:text="——"
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp" />
+
+                        <ImageView
+                            android:id="@+id/ids_tv_daily_weather_img_tomorrow_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_marginEnd="12dp"
+                            android:layout_toStartOf="@+id/ids_tv_daily_weather_tomorrow_2"
+                            android:src="@mipmap/icon_weather_1" />
+
+                        <TextView
+                            android:id="@+id/ids_tv_daily_weather_tomorrow_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="————"
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/ids_tv_daily_low_temp_tomorrow_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="5dp"
+                            android:layout_toStartOf="@id/ids_tv_daily_high_temp_tomorrow_2"
+                            android:gravity="end"
+                            android:text="--°"
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@id/ids_tv_daily_high_temp_tomorrow_2"
+                            android:gravity="end"
+                            android:text="/"
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/ids_tv_daily_high_temp_tomorrow_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="20dp"
+                            android:text="--°"
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp" />
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/gray_text_6B809C" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp">
+
+                        <TextView
+                            android:id="@+id/ids_tv_daily_today_name_tomorrow_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="20dp"
+                            android:text="——"
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp" />
+
+                        <ImageView
+                            android:id="@+id/ids_tv_daily_weather_img_tomorrow_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_marginEnd="12dp"
+                            android:layout_toStartOf="@+id/ids_tv_daily_weather_tomorrow_3"
+                            android:src="@mipmap/icon_weather_1" />
+
+                        <TextView
+                            android:id="@+id/ids_tv_daily_weather_tomorrow_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="————"
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/ids_tv_daily_low_temp_tomorrow_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="5dp"
+                            android:layout_toStartOf="@id/ids_tv_daily_high_temp_tomorrow_3"
+                            android:gravity="end"
+                            android:text="--°"
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@id/ids_tv_daily_high_temp_tomorrow_3"
+                            android:gravity="end"
+                            android:text="/"
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/ids_tv_daily_high_temp_tomorrow_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="20dp"
+                            android:text="--°"
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp" />
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/gray_text_6B809C" />
+                </LinearLayout>
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>

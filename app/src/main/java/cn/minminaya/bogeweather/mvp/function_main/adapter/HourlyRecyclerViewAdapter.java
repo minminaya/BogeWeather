@@ -66,6 +66,7 @@ public class HourlyRecyclerViewAdapter extends RecyclerView.Adapter<HourlyRecycl
             }
             holder.mImgHourly.setImageResource(imgNumRes);
             holder.mTvHourlyTemporary.setText(hourlyBeans.get(position).getTemp()+"℃");
+            holder.mTvHourlyTemporaryName.setText(hourlyBeans.get(position).getWeather());
             holder.mTvHourlyTime.setText(hourlyBeans.get(position).getTime());
         }
     }
@@ -80,6 +81,8 @@ public class HourlyRecyclerViewAdapter extends RecyclerView.Adapter<HourlyRecycl
         TextView mTvHourlyTemporary;
         @BindView(R.id.ids_img_hourly)
         ImageView mImgHourly;
+        @BindView(R.id.ids_tv_hourly_temporary_name)
+        TextView mTvHourlyTemporaryName;
         @BindView(R.id.ids_tv_hourly_time)
         TextView mTvHourlyTime;
 
