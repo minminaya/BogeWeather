@@ -2,6 +2,7 @@ package cn.minminaya.bogeweather.mvp.function_main.fragment;
 
 
 import android.os.Bundle;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -83,6 +84,8 @@ public class WeatherItemFragment extends BaseFragment implements MvpView {
     public TextView mIdTvAqiName;
     @BindView(R.id.ids_tv_today_week)
     public TextView mTvTodayWeek;
+    @BindView(R.id.ids_scroll_view_layout)
+    public NestedScrollView mScrollViewLayout;
 
 
     private String mCurrentCity;

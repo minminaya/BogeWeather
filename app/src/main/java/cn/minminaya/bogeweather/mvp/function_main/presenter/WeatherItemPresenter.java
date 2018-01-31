@@ -1,6 +1,7 @@
 package cn.minminaya.bogeweather.mvp.function_main.presenter;
 
 import android.util.Log;
+import android.view.View;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -87,6 +88,8 @@ public class WeatherItemPresenter extends BasePresenter<WeatherItemFragment> {
             //设置未来三天的天气图片
             setThreeDayImg(mWeatherItemFragment, resultBean.getDaily());
 
+
+            getMvpView().mScrollViewLayout.setVisibility(View.VISIBLE);
 
         }
 
