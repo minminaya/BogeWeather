@@ -17,7 +17,20 @@ import com.blankj.utilcode.util.Utils;
  */
 
 public class App extends Application {
+
+
     private static App INSTANCE;
+
+    /**是否完成定位*/
+    private boolean isLocation = false;
+
+    public boolean isLocation() {
+        return isLocation;
+    }
+
+    public void setLocation(boolean location) {
+        isLocation = location;
+    }
 
     public static App getINSTANCE() {
         return INSTANCE;

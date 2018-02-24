@@ -1,6 +1,7 @@
 package cn.minminaya.bogeweather;
 
-/** 常量类
+/**
+ * 常量类
  * Created by Niwa on 2018/1/26.
  */
 
@@ -67,4 +68,13 @@ public class C {
             R.mipmap.icon_weather_57,
             R.mipmap.icon_weather_58,
     };
+
+
+    /**
+     * 模拟的数据
+     */
+    public static class CityNameConstant {
+        public static String[] cityConstant = new String[]{"定位中.......", "广州", "湛江", "邯郸", "拉萨", "点击收起", "更多城市"};
+        public static String currentLocationCity = null;
+    }
 }

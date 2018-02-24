@@ -89,21 +89,37 @@ public class WeatherItemFragment extends BaseFragment implements MvpView {
 
 
     private String mCurrentCity;
+    private String mCurrentLocation;
+
+    /**
+     * 是否是定位的城市
+     */
+    private boolean isCurrentLocation = false;
+
+    public boolean isCurrentLocation() {
+        return isCurrentLocation;
+    }
+
+    public void setCurrentLocation(boolean currentLocation) {
+        isCurrentLocation = currentLocation;
+    }
 
     public HourlyRecyclerViewAdapter mHourlyRecyclerViewAdapter;
 
     private WeatherItemPresenter mWeatherItemPresenter = new WeatherItemPresenter();
 
     private static final String CURRENT_CITY = "currentCity";
+    private static final String CURRENT_LOCATION = "currentLocation";
 
     public WeatherItemFragment() {
     }
 
 
-    public static WeatherItemFragment newInstance(String currentCity) {
+    public static WeatherItemFragment newInstance(String currentCity, String currentLocation) {
         WeatherItemFragment fragment = new WeatherItemFragment();
         Bundle args = new Bundle();
         args.putString(CURRENT_CITY, currentCity);
+        args.putString(CURRENT_LOCATION, currentLocation);
         fragment.setArguments(args);
         return fragment;
     }
@@ -113,6 +129,7 @@ public class WeatherItemFragment extends BaseFragment implements MvpView {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mCurrentCity = getArguments().getString(CURRENT_CITY);
+            mCurrentLocation = getArguments().getString(CURRENT_LOCATION);
         }
     }
 
@@ -128,7 +145,7 @@ public class WeatherItemFragment extends BaseFragment implements MvpView {
         mWeatherItemPresenter.attachView(this);
 
         //连接网络加载天气的数据
-        mWeatherItemPresenter.loadData(mCurrentCity);
+        mWeatherItemPresenter.loadData(mCurrentCity, mCurrentLocation);
     }
 
     @Override

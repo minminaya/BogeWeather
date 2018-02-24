@@ -7,6 +7,8 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.minminaya.bogeweather.App;
+import cn.minminaya.bogeweather.C;
 import cn.minminaya.bogeweather.mvp.function_main.fragment.WeatherItemFragment;
 
 /**
@@ -16,28 +18,16 @@ import cn.minminaya.bogeweather.mvp.function_main.fragment.WeatherItemFragment;
 
 public class UltraViewpageAdapter extends FragmentStatePagerAdapter {
 
-    private List<Fragment> fragmentList = new ArrayList<>();
+    private String mCurrentLocation;
 
-    public UltraViewpageAdapter(FragmentManager fm) {
+    private List<Fragment> fragmentList = new ArrayList<>();
+    private Fragment fragment = null;
+    private int fragmentSize = 5;
+
+    public UltraViewpageAdapter(FragmentManager fm, String currentLocation) {
         super(fm);
-//        Fragment fragment1 = WeatherItemFragment.newInstance("上海");
-        Fragment fragment2 = WeatherItemFragment.newInstance("广州");
-        Fragment fragment3 = WeatherItemFragment.newInstance("北京");
-//        Fragment fragment4 = WeatherItemFragment.newInstance("湛江");
-        Fragment fragment5 = WeatherItemFragment.newInstance("哈尔滨");
-//        Fragment fragment6 = WeatherItemFragment.newInstance("西藏");
-        Fragment fragment7 = WeatherItemFragment.newInstance("西安");
-        Fragment fragment8 = WeatherItemFragment.newInstance("青海");
-//        Fragment fragment9 = WeatherItemFragment.newInstance("东城区");
-//        fragmentList.add(fragment1);
-        fragmentList.add(fragment2);
-        fragmentList.add(fragment3);
-//        fragmentList.add(fragment4);
-        fragmentList.add(fragment5);
-//        fragmentList.add(fragment6);
-        fragmentList.add(fragment7);
-        fragmentList.add(fragment8);
-//        fragmentList.add(fragment9);
+        this.mCurrentLocation = currentLocation;
+        initData();
     }
 
     @Override
@@ -47,6 +37,30 @@ public class UltraViewpageAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return fragmentList.size();
+        return fragmentList.size() > 0 ? fragmentList.size() : 0;
+    }
+
+    public void initData() {
+        for (int i = 0; i < fragmentSize; i++) {
+
+            if (i == 0) {
+                //如果是第一个，判断有没成功定位
+                if (App.getINSTANCE().isLocation()) {
+                    fragment = WeatherItemFragment.newInstance("", mCurrentLocation);
+                    ((WeatherItemFragment) fragment).setCurrentLocation(true);//设置当前fragment是定位城市
+
+                } else {
+                    //未定位成功则显示北京的天气
+                    fragment = WeatherItemFragment.newInstance("北京", null);
+                }
+                fragmentList.add(fragment);
+                fragment = null;
+            } else {
+                //第2到第5个城市
+                fragment = WeatherItemFragment.newInstance(C.CityNameConstant.cityConstant[i], null);
+                fragmentList.add(fragment);
+                fragment = null;
+            }
+        }
     }
 }

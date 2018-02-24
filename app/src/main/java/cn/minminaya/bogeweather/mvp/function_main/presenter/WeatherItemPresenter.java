@@ -54,8 +54,12 @@ public class WeatherItemPresenter extends BasePresenter<WeatherItemFragment> {
             mWeatherItemFragment.mHourlyRecyclerViewAdapter.notifyDataSetChanged();
 
 //            MainActivity mainActivity = ((MainActivity) mWeatherItemFragment.getActivity());
+            String currentCityName = value.getResult().getCity();
+            mWeatherItemFragment.mToolbarTitle.setText(currentCityName);
 
-            mWeatherItemFragment.mToolbarTitle.setText(value.getResult().getCity());
+            if (getMvpView().isCurrentLocation()) {
+                C.CityNameConstant.currentLocationCity = currentCityName;
+            }
 
             //获取当前天气代号
             String img = value.getResult().getImg();
@@ -83,7 +87,8 @@ public class WeatherItemPresenter extends BasePresenter<WeatherItemFragment> {
             mWeatherItemFragment.mTvDailyTodayNameTomorrow3.setText(resultBean.getDaily().get(3).getWeek());
 
             mWeatherItemFragment.mIdTvAqiName.setText(resultBean.getAqi().getQuality());
-            mWeatherItemFragment.mTvTodayWeek.setText(resultBean.getWeek());;/////////////////
+            mWeatherItemFragment.mTvTodayWeek.setText(resultBean.getWeek());
+            ;/////////////////
 
             //设置未来三天的天气图片
             setThreeDayImg(mWeatherItemFragment, resultBean.getDaily());
@@ -145,9 +150,9 @@ public class WeatherItemPresenter extends BasePresenter<WeatherItemFragment> {
     /**
      * 连接网络加载天气的数据
      */
-    public void loadData(String mCurrentCity) {
+    public void loadData(String mCurrentCity, String currentLocation) {
         NetWorkForRestApi.getWeatherApi()
-                .queryMainWeather(mCurrentCity, null, null, null, null)
+                .queryMainWeather(mCurrentCity, null, null, null, currentLocation)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(mWeatherApiObserver);

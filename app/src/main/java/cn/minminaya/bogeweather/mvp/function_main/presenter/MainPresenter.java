@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.blankj.utilcode.util.NetworkUtils;
 
+import cn.minminaya.bogeweather.App;
 import cn.minminaya.bogeweather.mvp.base.presenter.BasePresenter;
 import cn.minminaya.bogeweather.mvp.function_main.activity.MainActivity;
 import cn.minminaya.bogeweather.utils.LocationUtils;
@@ -20,8 +21,11 @@ import cn.minminaya.bogeweather.utils.LocationUtils;
 
 public class MainPresenter extends BasePresenter<MainActivity> {
 
-    public void test() {
-        getBestLocation();
+    /**
+     * 获取当前坐标
+     */
+    public String getLocationInfo() {
+        return getBestLocation();
     }
 
     /**
@@ -40,7 +44,7 @@ public class MainPresenter extends BasePresenter<MainActivity> {
     /**
      * 采用最好的方式获取定位信息
      */
-    private void getBestLocation() {
+    private String getBestLocation() {
         Criteria c = new Criteria();//Criteria类是设置定位的标准信息（系统会根据你的要求，匹配最适合你的定位供应商），一个定位的辅助信息的类
         c.setPowerRequirement(Criteria.POWER_LOW);//设置低耗电
         c.setAltitudeRequired(true);//设置需要海拔
@@ -51,8 +55,11 @@ public class MainPresenter extends BasePresenter<MainActivity> {
         if (best == null) {
             Toast.makeText(getMvpView(), " best location is null", Toast.LENGTH_SHORT).show();
         } else {
+            App.getINSTANCE().setLocation(true);//标记已定位成功
             Toast.makeText(getMvpView(), "best location: lat==" + best.getLatitude() + " lng==" + best.getLongitude(), Toast.LENGTH_SHORT).show();
+            return best.getLatitude() + "," + best.getLongitude();
         }
+        return null;
     }
 
 }
