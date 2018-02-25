@@ -57,7 +57,7 @@ public class UltraViewpageAdapter extends FragmentStatePagerAdapter {
                 fragment = null;
             } else {
                 //第2到第5个城市
-                fragment = WeatherItemFragment.newInstance(C.CityNameConstant.cityConstant[i], null);
+                fragment = WeatherItemFragment.newInstance(C.CityNameConstant.citys.get(i), null);
                 fragmentList.add(fragment);
                 fragment = null;
             }

@@ -1,5 +1,6 @@
 package cn.minminaya.bogeweather.data.http.api;
 
+import cn.minminaya.bogeweather.data.http.model.CityModel;
 import cn.minminaya.bogeweather.data.http.model.WeatherModel;
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -34,6 +35,6 @@ public interface WeatherApi {
      * 查询所有城市
      */
     @GET("city")
-    Observable<WeatherModel> queryCity(
+    Observable<CityModel> queryCity(
     );
 }

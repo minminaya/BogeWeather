@@ -1,5 +1,8 @@
 package cn.minminaya.bogeweather;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 常量类
  * Created by Niwa on 2018/1/26.
@@ -75,6 +78,9 @@ public class C {
      */
     public static class CityNameConstant {
         public static String[] cityConstant = new String[]{"定位中.......", "广州", "湛江", "邯郸", "拉萨", "点击收起", "更多城市"};
+
+        public static List<String> citys = new ArrayList<>();
+
         public static String currentLocationCity = null;
     }
 }

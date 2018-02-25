@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.ActivityUtils;
 import com.blankj.utilcode.util.BarUtils;
 import com.blankj.utilcode.util.ConvertUtils;
 import com.blankj.utilcode.util.ReflectUtils;
@@ -68,10 +69,27 @@ public class MainActivity extends BaseActivity implements MvpView {
         mBoomMenuButton.setPiecePlaceEnum(PiecePlaceEnum.DOT_7_1);
         mBoomMenuButton.setButtonPlaceEnum(ButtonPlaceEnum.SC_7_3);
 
+
         for (int i = 0; i < 7; i++) {
-            mBoomMenuButton.addBuilder(new TextOutsideCircleButton.Builder()
-                    .normalText(C.CityNameConstant.cityConstant[i])
-            );
+
+            switch (i) {
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                    mBoomMenuButton.addBuilder(new TextOutsideCircleButton.Builder()
+                            .normalText(""));
+                    break;
+                case 5:
+                    mBoomMenuButton.addBuilder(new TextOutsideCircleButton.Builder()
+                            .normalText("点击收起"));
+                    break;
+                case 6:
+                    mBoomMenuButton.addBuilder(new TextOutsideCircleButton.Builder()
+                            .normalText("更多城市"));
+                    break;
+            }
         }
 
         mViewPager.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL);
@@ -101,15 +119,8 @@ public class MainActivity extends BaseActivity implements MvpView {
                 if (index >= 0 && index <= 4) {
                     mViewPager.setCurrentItem(index);
                 } else if (index == 6) {
-                    // TODO: 25/02/2018 跳转到选择城市的Activity
+                    ActivityUtils.startActivity(CityItemActivity.class);
                 }
-
-                //当前城市
-//                TextView textView = ReflectUtils.reflect(boomButton).field("text").get();
-//
-//                Log.e("boomButton-onClicked", "textView:" + textView.getText());
-//
-//                textView.setText("修改名字啦啊哈哈哈哈");
 
                 Log.e("boomButton-onClicked", "index:" + index);
 
@@ -140,6 +151,11 @@ public class MainActivity extends BaseActivity implements MvpView {
                 //如果定位成功了
                 if (App.getINSTANCE().isLocation()) {
                     mBoomMenuButton.getBoomButton(0).getTextView().setText(C.CityNameConstant.currentLocationCity);
+                }else{
+                    mBoomMenuButton.getBoomButton(0).getTextView().setText("北京");
+                }
+                for (int i = 1; i < 5; i++) {
+                    mBoomMenuButton.getBoomButton(i).getTextView().setText(C.CityNameConstant.citys.get(i));
                 }
             }
         });
@@ -150,6 +166,13 @@ public class MainActivity extends BaseActivity implements MvpView {
         mainPresenter.attachView(this);
 
         String currentLocation = mainPresenter.getLocationInfo();
+
+        //初始化cityItem
+        C.CityNameConstant.citys.add("定位中......");
+        C.CityNameConstant.citys.add("广州");
+        C.CityNameConstant.citys.add("北京");
+        C.CityNameConstant.citys.add("杭州");
+        C.CityNameConstant.citys.add("成都");
 
         UltraViewpageAdapter mUltraViewpageAdapter = new UltraViewpageAdapter(getSupportFragmentManager(), currentLocation);
         mViewPager.setAdapter(mUltraViewpageAdapter);
@@ -176,7 +199,8 @@ public class MainActivity extends BaseActivity implements MvpView {
      * 权限的结果回调函数
      */
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 1) {
             flag = grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED;

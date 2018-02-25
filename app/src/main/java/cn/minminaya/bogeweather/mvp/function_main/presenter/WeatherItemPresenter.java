@@ -59,6 +59,7 @@ public class WeatherItemPresenter extends BasePresenter<WeatherItemFragment> {
 
             if (getMvpView().isCurrentLocation()) {
                 C.CityNameConstant.currentLocationCity = currentCityName;
+                C.CityNameConstant.citys.set(0, currentCityName);
             }
 
             //获取当前天气代号
