@@ -1,16 +1,14 @@
 package cn.minminaya.bogeweather.mvp.function_main.presenter;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
-import android.os.Build;
-import android.support.v4.app.ActivityCompat;
 import android.widget.Toast;
 
-import com.blankj.utilcode.util.NetworkUtils;
+import com.nightonke.boommenu.BoomMenuButton;
 
 import cn.minminaya.bogeweather.App;
+import cn.minminaya.bogeweather.C;
+import cn.minminaya.bogeweather.R;
 import cn.minminaya.bogeweather.mvp.base.presenter.BasePresenter;
 import cn.minminaya.bogeweather.mvp.function_main.activity.MainActivity;
 import cn.minminaya.bogeweather.utils.LocationUtils;
@@ -20,6 +18,9 @@ import cn.minminaya.bogeweather.utils.LocationUtils;
  */
 
 public class MainPresenter extends BasePresenter<MainActivity> {
+
+
+    private BoomMenuButton mBoomMenuButton;
 
     /**
      * 获取当前坐标
@@ -62,4 +63,46 @@ public class MainPresenter extends BasePresenter<MainActivity> {
         return null;
     }
 
+    /**
+     * 设置BOB财当的最新数据
+     */
+    public void setBOBData() {
+        mBoomMenuButton = getMvpView().mBoomMenuButton;
+        //如果定位成功了
+        if (App.getINSTANCE().isLocation()) {
+            mBoomMenuButton.getBoomButton(0).getTextView().setText(C.CityNameConstant.currentLocationCity);
+            mBoomMenuButton.getBoomButton(0).getImageView().setImageResource(R.drawable.icon_location_1);
+            setBOBImgScale(0);
+        } else {
+            mBoomMenuButton.getBoomButton(0).getTextView().setText("北京");
+            mBoomMenuButton.getBoomButton(0).getImageView().setImageResource(R.drawable.icon_location_1);
+            setBOBImgScale(0);
+        }
+        for (int i = 1; i < 5; i++) {
+            mBoomMenuButton.getBoomButton(i).getTextView().setText(C.CityNameConstant.citys.get(i));
+            mBoomMenuButton.getBoomButton(i).getImageView().setImageResource(R.drawable.icon_city);
+            setBOBImgScale(i);
+        }
+        mBoomMenuButton.getBoomButton(5).getImageView().setImageResource(R.drawable.icon_close);
+        mBoomMenuButton.getBoomButton(6).getImageView().setImageResource(R.drawable.icon_more);
+        setBOBImgScale(5);
+        setBOBImgScale(6);
+    }
+
+    private void setBOBImgScale(int i) {
+        mBoomMenuButton.getBoomButton(i).getImageView().setScaleX(0.5f);
+        mBoomMenuButton.getBoomButton(i).getImageView().setScaleY(0.5f);
+    }
+
+    /**
+     * 初始化cityItem
+     */
+    public void initCityLists() {
+        C.CityNameConstant.citys.add("定位中......");
+        C.CityNameConstant.citys.add("广州");
+        C.CityNameConstant.citys.add("北京");
+        C.CityNameConstant.citys.add("杭州");
+        C.CityNameConstant.citys.add("成都");
+
+    }
 }
