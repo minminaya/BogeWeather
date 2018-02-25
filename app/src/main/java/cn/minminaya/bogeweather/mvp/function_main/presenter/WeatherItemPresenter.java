@@ -265,6 +265,11 @@ public class WeatherItemPresenter extends BasePresenter<WeatherItemFragment> {
                 getMvpView().mPicView.setBackgroundResource(R.color.green_cloudy_4ABFEB_12);
                 getMvpView().mPicView2.setBackgroundResource(R.color.green_cloudy_4ABFEB_12);
                 break;
+            case "18":
+                getMvpView().mImagPic.setImageResource(R.drawable.pic_fog);
+                getMvpView().mPicView.setBackgroundResource(R.color.green_fog_8cadd3_11);
+                getMvpView().mPicView2.setBackgroundResource(R.color.green_fog_8cadd3_11);
+                break;
         }
     }
 

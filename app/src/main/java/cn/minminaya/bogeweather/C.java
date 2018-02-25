@@ -83,4 +83,6 @@ public class C {
 
         public static String currentLocationCity = null;
     }
+
+    public final static int FORM_CITYITEMACTITVY_TO＿MAIN_ACTIVITY = 0x9343434;
 }

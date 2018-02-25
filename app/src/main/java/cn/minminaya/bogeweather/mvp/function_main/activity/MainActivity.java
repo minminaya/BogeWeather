@@ -28,6 +28,10 @@ import com.nightonke.boommenu.Piece.PiecePlaceEnum;
 import com.nightonke.boommenu.Util;
 import com.tmall.ultraviewpager.UltraViewPager;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
@@ -48,7 +52,7 @@ public class MainActivity extends BaseActivity implements MvpView {
     public BoomMenuButton mBoomMenuButton;
     private MainPresenter mainPresenter = new MainPresenter();
 
-
+    UltraViewpageAdapter mUltraViewpageAdapter = null;
     public boolean flag;
 
     @Override
@@ -79,7 +83,8 @@ public class MainActivity extends BaseActivity implements MvpView {
                 case 3:
                 case 4:
                     mBoomMenuButton.addBuilder(new TextOutsideCircleButton.Builder()
-                            .normalText(""));
+                            .normalText("")
+                    );
                     break;
                 case 5:
                     mBoomMenuButton.addBuilder(new TextOutsideCircleButton.Builder()
@@ -151,19 +156,37 @@ public class MainActivity extends BaseActivity implements MvpView {
                 //如果定位成功了
                 if (App.getINSTANCE().isLocation()) {
                     mBoomMenuButton.getBoomButton(0).getTextView().setText(C.CityNameConstant.currentLocationCity);
-                }else{
+                    mBoomMenuButton.getBoomButton(0).getImageView().setImageResource(R.drawable.icon_location_1);
+                    setBOBImgScale(0);
+                } else {
                     mBoomMenuButton.getBoomButton(0).getTextView().setText("北京");
+                    mBoomMenuButton.getBoomButton(0).getImageView().setImageResource(R.drawable.icon_location_1);
+                    setBOBImgScale(0);
                 }
                 for (int i = 1; i < 5; i++) {
                     mBoomMenuButton.getBoomButton(i).getTextView().setText(C.CityNameConstant.citys.get(i));
+                    mBoomMenuButton.getBoomButton(i).getImageView().setImageResource(R.drawable.icon_city);
+                    setBOBImgScale(i);
                 }
+                mBoomMenuButton.getBoomButton(5).getImageView().setImageResource(R.drawable.icon_close);
+                mBoomMenuButton.getBoomButton(6).getImageView().setImageResource(R.drawable.icon_more);
+                setBOBImgScale(5);
+                setBOBImgScale(6);
+
             }
         });
+    }
+
+    private void setBOBImgScale(int i) {
+        mBoomMenuButton.getBoomButton(i).getImageView().setScaleX(0.5f);
+        mBoomMenuButton.getBoomButton(i).getImageView().setScaleY(0.5f);
     }
 
     @Override
     public void bind() {
         mainPresenter.attachView(this);
+
+        EventBus.getDefault().register(this);
 
         String currentLocation = mainPresenter.getLocationInfo();
 
@@ -174,7 +197,8 @@ public class MainActivity extends BaseActivity implements MvpView {
         C.CityNameConstant.citys.add("杭州");
         C.CityNameConstant.citys.add("成都");
 
-        UltraViewpageAdapter mUltraViewpageAdapter = new UltraViewpageAdapter(getSupportFragmentManager(), currentLocation);
+        mUltraViewpageAdapter = new UltraViewpageAdapter(getSupportFragmentManager(), currentLocation);
+        mUltraViewpageAdapter.initData();
         mViewPager.setAdapter(mUltraViewpageAdapter);
 
     }
@@ -182,6 +206,7 @@ public class MainActivity extends BaseActivity implements MvpView {
     @Override
     public void unBind() {
         mainPresenter.detachView(this);
+        EventBus.getDefault().unregister(this);
     }
 
     @Override
@@ -219,6 +244,21 @@ public class MainActivity extends BaseActivity implements MvpView {
             }
         } else {
             flag = true;
+        }
+    }
+
+    /**
+     * 接受来自CityItemActivity的信息
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void notifyFragmentAdapter(Integer eventNum) {
+
+        if (eventNum == C.FORM_CITYITEMACTITVY_TO＿MAIN_ACTIVITY) {
+            mUltraViewpageAdapter.initData();
+            mUltraViewpageAdapter.notifyDataSetChanged();
+        }
+        if (eventNum >= 0 && eventNum < 5) {
+            mViewPager.setCurrentItem(eventNum);
         }
     }
 }

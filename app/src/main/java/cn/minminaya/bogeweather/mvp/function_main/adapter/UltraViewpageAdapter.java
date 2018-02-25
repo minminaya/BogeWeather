@@ -1,5 +1,6 @@
 package cn.minminaya.bogeweather.mvp.function_main.adapter;
 
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -27,7 +28,7 @@ public class UltraViewpageAdapter extends FragmentStatePagerAdapter {
     public UltraViewpageAdapter(FragmentManager fm, String currentLocation) {
         super(fm);
         this.mCurrentLocation = currentLocation;
-        initData();
+//        initData();
     }
 
     @Override
@@ -37,10 +38,11 @@ public class UltraViewpageAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return fragmentList.size() > 0 ? fragmentList.size() : 0;
+        return fragmentSize > 0 ? fragmentSize : 0;
     }
 
     public void initData() {
+        fragmentList.clear();
         for (int i = 0; i < fragmentSize; i++) {
 
             if (i == 0) {
@@ -62,5 +64,13 @@ public class UltraViewpageAdapter extends FragmentStatePagerAdapter {
                 fragment = null;
             }
         }
+    }
+
+    /**
+     * 让系统重新加载
+     */
+    @Override
+    public int getItemPosition(@NonNull Object object) {
+        return POSITION_NONE;
     }
 }
