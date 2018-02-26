@@ -1,7 +1,10 @@
 package cn.minminaya.bogeweather.data.http;
 
+import android.webkit.WebSettings;
+
 import java.io.IOException;
 
+import cn.minminaya.bogeweather.App;
 import cn.minminaya.bogeweather.data.http.api.Urls;
 import cn.minminaya.bogeweather.data.http.api.WeatherApi;
 import okhttp3.Interceptor;
@@ -47,6 +50,8 @@ public class NetWorkForRestApi {
                     public Response intercept(Chain chain) throws IOException {
                         Request request = chain.request()
                                 .newBuilder()
+                                .removeHeader("User-Agent")
+                                .addHeader("User-Agent", WebSettings.getDefaultUserAgent(App.getINSTANCE()))//添加真正的头部
                                 .addHeader("Authorization", "APPCODE f81154acc3d54c61852acbcd0b65c3f3")
                                 .build();
                         return chain.proceed(request);

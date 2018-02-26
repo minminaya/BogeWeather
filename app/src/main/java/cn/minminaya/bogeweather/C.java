@@ -85,5 +85,7 @@ public class C {
     }
 
     public final static int FORM_CITYITEMACTITVY_TO＿MAIN_ACTIVITY = 0x9343434;
-    public  static String cityTemp = null;
+    public static String cityTemp = null;
+    public static String status = null;
+
 }

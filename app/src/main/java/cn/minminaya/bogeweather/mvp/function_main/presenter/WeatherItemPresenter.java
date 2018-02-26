@@ -36,13 +36,13 @@ public class WeatherItemPresenter extends BasePresenter<WeatherItemFragment> {
     private Observer<WeatherModel> mWeatherApiObserver = new Observer<WeatherModel>() {
         @Override
         public void onSubscribe(Disposable d) {
-            Log.e(TAG, "onSubscribe: ");
+//            Log.e(TAG, "onSubscribe: ");
         }
 
         @Override
         public void onNext(WeatherModel value) {
-            Log.e(TAG, "onNext: " + value.getMsg());
-            Log.e(TAG, "onNext: " + value.getResult().getIndex().get(0).getDetail());
+//            Log.e(TAG, "onNext: " + value.getMsg());
+//            Log.e(TAG, "onNext: " + value.getResult().getIndex().get(0).getDetail());
             WeatherItemFragment mWeatherItemFragment = getMvpView();
             ResultBean resultBean = value.getResult();
             mWeatherItemFragment.mTvTemporary.setText(resultBean.getTemp());

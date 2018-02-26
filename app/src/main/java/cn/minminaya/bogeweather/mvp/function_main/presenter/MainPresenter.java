@@ -13,7 +13,7 @@ import cn.minminaya.bogeweather.mvp.base.presenter.BasePresenter;
 import cn.minminaya.bogeweather.mvp.function_main.activity.MainActivity;
 import cn.minminaya.bogeweather.utils.LocationUtils;
 
-/**
+/** 
  * Created by Niwa on 2018/1/16.
  */
 
@@ -54,10 +54,10 @@ public class MainPresenter extends BasePresenter<MainActivity> {
         //... Criteria 还有其他属性，就不一一介绍了
         Location best = LocationUtils.getBestLocation(getMvpView(), c);
         if (best == null) {
-            Toast.makeText(getMvpView(), " best location is null", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getMvpView(), " best location is null", Toast.LENGTH_SHORT).show();
         } else {
             App.getINSTANCE().setLocation(true);//标记已定位成功
-            Toast.makeText(getMvpView(), "best location: lat==" + best.getLatitude() + " lng==" + best.getLongitude(), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getMvpView(), "best location: lat==" + best.getLatitude() + " lng==" + best.getLongitude(), Toast.LENGTH_SHORT).show();
             return best.getLatitude() + "," + best.getLongitude();
         }
         return null;

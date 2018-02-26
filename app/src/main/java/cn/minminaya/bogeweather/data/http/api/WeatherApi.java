@@ -1,8 +1,11 @@
 package cn.minminaya.bogeweather.data.http.api;
 
+import org.json.JSONObject;
+
 import cn.minminaya.bogeweather.data.http.model.CityModel;
 import cn.minminaya.bogeweather.data.http.model.WeatherModel;
 import io.reactivex.Observable;
+import okhttp3.ResponseBody;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
@@ -29,6 +32,16 @@ public interface WeatherApi {
             @Query("cityid") String cityid,
             @Query("ip") String ip,
             @Query("location") String location
+    );
+
+    /**
+     * 天气预报查询接口
+     *
+     * @param city     城市
+     */
+    @GET("query")
+    Observable<ResponseBody> queryMainWeatherForJsonObject(
+            @Query("city") String city
     );
 
     /**

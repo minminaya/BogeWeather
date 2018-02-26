@@ -4,19 +4,30 @@ import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import org.greenrobot.eventbus.EventBus;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 
 import butterknife.BindView;
 import cn.minminaya.bogeweather.C;
 import cn.minminaya.bogeweather.R;
+import cn.minminaya.bogeweather.data.http.NetWorkForRestApi;
 import cn.minminaya.bogeweather.mvp.base.BaseActivity;
 import cn.minminaya.bogeweather.mvp.base.view.MvpView;
 import cn.minminaya.bogeweather.mvp.function_main.adapter.CityItemRecyclerViewAdapter;
 import cn.minminaya.bogeweather.mvp.function_main.presenter.CityItemActivityPresenter;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+import okhttp3.ResponseBody;
 
 /**
  * 城市列表页
@@ -54,18 +65,9 @@ public class CityItemActivity extends BaseActivity implements MvpView {
         mAddCityFragmentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String text = mEditText.getText().toString();
+                final String text = mEditText.getText().toString();
                 if (!text.equals("")) {
-                    //只有不为空才执行逻辑操作
-                    C.CityNameConstant.citys.set(4, text);
-
-                    mCityItemRecyclerViewAdapter.notifyDataSetChanged();
-
-                    //发到ManActivity
-                    EventBus.getDefault().post(C.FORM_CITYITEMACTITVY_TO＿MAIN_ACTIVITY);
-
-                    onBackPressed();
-                    EventBus.getDefault().post(4);//设置当前显示的fragment
+                    mCityItemActivityPresenter.handleCityEditText(text);
                 }
             }
         });
