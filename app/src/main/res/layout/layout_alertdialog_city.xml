@@ -1,0 +1,55 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:text="请输入城市"
+        android:textColor="@android:color/black"
+        android:textSize="25sp" />
+
+    <EditText
+        android:id="@+id/ids_edit_city_input"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:textColor="#434343"
+        android:textSize="20sp"
+        android:gravity="center"
+        tools:hint="input" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/ids_btn_city_yes"
+            style="@android:style/Theme.Dialog"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:text="确定"
+            android:textColor="#45818e" />
+
+        <Button
+            android:id="@+id/ids_btn_city_cancel"
+            style="@android:style/Theme.Dialog"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/splash_dialog_left"
+            android:layout_weight="1"
+            android:background="@null"
+            android:text="取消"
+            android:textColor="#45818e" />
+
+    </LinearLayout>
+</LinearLayout>
