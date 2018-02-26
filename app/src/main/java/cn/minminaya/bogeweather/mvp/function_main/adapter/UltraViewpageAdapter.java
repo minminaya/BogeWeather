@@ -4,6 +4,8 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,14 +23,16 @@ public class UltraViewpageAdapter extends FragmentStatePagerAdapter {
 
     private String mCurrentLocation;
 
-    private List<Fragment> fragmentList = new ArrayList<>();
+    private List<Fragment> fragmentList ;
     private Fragment fragment = null;
     private int fragmentSize = 5;
 
     public UltraViewpageAdapter(FragmentManager fm, String currentLocation) {
         super(fm);
         this.mCurrentLocation = currentLocation;
-//        initData();
+        fragmentList = new ArrayList<>();
+        Log.e("nnn","wake up");
+        initData();
     }
 
     @Override
@@ -38,12 +42,12 @@ public class UltraViewpageAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return fragmentSize > 0 ? fragmentSize : 0;
+        return fragmentList.size();
     }
 
     public void initData() {
         fragmentList.clear();
-        for (int i = 0; i < fragmentSize; i++) {
+        for (int i = 0; i < 5; i++) {
 
             if (i == 0) {
                 //如果是第一个，判断有没成功定位
@@ -64,6 +68,7 @@ public class UltraViewpageAdapter extends FragmentStatePagerAdapter {
                 fragment = null;
             }
         }
+        notifyDataSetChanged();
     }
 
     /**
@@ -73,4 +78,5 @@ public class UltraViewpageAdapter extends FragmentStatePagerAdapter {
     public int getItemPosition(@NonNull Object object) {
         return POSITION_NONE;
     }
+
 }

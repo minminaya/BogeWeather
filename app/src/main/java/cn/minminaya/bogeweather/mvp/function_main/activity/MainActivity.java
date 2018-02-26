@@ -7,6 +7,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Gravity;
 
 import com.blankj.utilcode.util.ActivityUtils;
@@ -37,7 +39,8 @@ import cn.minminaya.bogeweather.mvp.function_main.presenter.MainPresenter;
 public class MainActivity extends BaseActivity implements MvpView {
 
     @BindView(R.id.ids_view_pager)
-    public UltraViewPager mViewPager;
+//    public UltraViewPager mViewPager;
+    public ViewPager mViewPager;
     @BindView(R.id.ids_bmb)
     public BoomMenuButton mBoomMenuButton;
     private MainPresenter mainPresenter = new MainPresenter();
@@ -85,18 +88,18 @@ public class MainActivity extends BaseActivity implements MvpView {
             }
         }
 
-        mViewPager.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL);
-        mViewPager.setOffscreenPageLimit(3);
+//        mViewPager.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL);
+        mViewPager.setOffscreenPageLimit(2);
 
         //配置指示器
-        mViewPager.initIndicator()
-                .setOrientation(UltraViewPager.Orientation.HORIZONTAL)
-                .setFocusColor(Color.WHITE)
-                .setNormalColor(Color.parseColor("#dddddd"))
-                .setRadius(ConvertUtils.dp2px(3))
-                .setGravity(Gravity.CENTER_HORIZONTAL | Gravity.TOP)
-                .setMargin(0, ConvertUtils.dp2px(70), 0, 0)
-                .build();
+//        mViewPager.initIndicator()
+//                .setOrientation(UltraViewPager.Orientation.HORIZONTAL)
+//                .setFocusColor(Color.WHITE)
+//                .setNormalColor(Color.parseColor("#dddddd"))
+//                .setRadius(ConvertUtils.dp2px(3))
+//                .setGravity(Gravity.CENTER_HORIZONTAL | Gravity.TOP)
+//                .setMargin(0, ConvertUtils.dp2px(70), 0, 0)
+//                .build();
 
     }
 
@@ -210,7 +213,7 @@ public class MainActivity extends BaseActivity implements MvpView {
 
         if (eventNum == C.FORM_CITYITEMACTITVY_TO＿MAIN_ACTIVITY) {
             mUltraViewpageAdapter.initData();
-            mUltraViewpageAdapter.notifyDataSetChanged();
+            Log.e("notifyFragmentAdapter", "数据来了");
         }
         if (eventNum >= 0 && eventNum < 5) {
             mViewPager.setCurrentItem(eventNum);
