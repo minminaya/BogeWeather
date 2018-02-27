@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">BogeWeather</string>
+    <string name="str_high_temp">--%1$s℃</string>
 </resources>

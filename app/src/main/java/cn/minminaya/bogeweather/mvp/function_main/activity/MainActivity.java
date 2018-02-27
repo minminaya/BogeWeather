@@ -90,7 +90,7 @@ public class MainActivity extends BaseActivity implements MvpView {
         }
 
 //        mViewPager.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL);
-        mViewPager.setOffscreenPageLimit(2);
+        mViewPager.setOffscreenPageLimit(5);
 
         //配置指示器
 //        mViewPager.initIndicator()

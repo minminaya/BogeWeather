@@ -60,12 +60,12 @@ public class UltraViewpageAdapter extends FragmentStatePagerAdapter {
                     fragment = WeatherItemFragment.newInstance("北京", null);
                 }
                 fragmentList.add(fragment);
-                fragment = null;
+//                fragment = null;
             } else {
                 //第2到第5个城市
                 fragment = WeatherItemFragment.newInstance(C.CityNameConstant.citys.get(i), null);
                 fragmentList.add(fragment);
-                fragment = null;
+//                fragment = null;
             }
         }
         notifyDataSetChanged();

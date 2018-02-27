@@ -45,9 +45,14 @@ public class WeatherItemPresenter extends BasePresenter<WeatherItemFragment> {
 //            Log.e(TAG, "onNext: " + value.getResult().getIndex().get(0).getDetail());
             WeatherItemFragment mWeatherItemFragment = getMvpView();
             ResultBean resultBean = value.getResult();
+
             mWeatherItemFragment.mTvTemporary.setText(resultBean.getTemp());
-            mWeatherItemFragment.mTvMaxTemporary.setText(resultBean.getTemphigh() + "℃");
-            mWeatherItemFragment.mTvMixTemporary.setText(resultBean.getTemplow() + "℃");
+
+            String highTemp = resultBean.getTemphigh();
+            String lowTemp = resultBean.getTemplow();
+
+            mWeatherItemFragment.mTvMaxTemporary.setText(getMvpView().getContext().getString(R.string.str_high_temp, highTemp));
+            mWeatherItemFragment.mTvMixTemporary.setText(getMvpView().getContext().getString(R.string.str_high_temp, lowTemp));
             mWeatherItemFragment.mTvWeather.setText(resultBean.getWeather());
 
             mWeatherItemFragment.mHourlyRecyclerViewAdapter.setHourlyBeans(resultBean.getHourly());
