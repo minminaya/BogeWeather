@@ -26,11 +26,9 @@ import okhttp3.ResponseBody;
 
 public class CityItemActivityPresenter extends BasePresenter<CityItemActivity> {
 
-
-    public void loadCityData() {
-    }
-
-
+    /**
+     * 处理EditText的文本
+     */
     public void handleCityEditText(final String text) {
 
 
