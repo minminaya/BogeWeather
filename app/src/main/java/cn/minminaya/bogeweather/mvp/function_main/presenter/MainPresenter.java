@@ -13,7 +13,7 @@ import cn.minminaya.bogeweather.mvp.base.presenter.BasePresenter;
 import cn.minminaya.bogeweather.mvp.function_main.activity.MainActivity;
 import cn.minminaya.bogeweather.utils.LocationUtils;
 
-/** 
+/**
  * Created by Niwa on 2018/1/16.
  */
 

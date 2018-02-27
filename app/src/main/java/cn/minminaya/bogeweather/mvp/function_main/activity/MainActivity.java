@@ -14,6 +14,7 @@ import android.view.Gravity;
 import com.blankj.utilcode.util.ActivityUtils;
 import com.blankj.utilcode.util.BarUtils;
 import com.blankj.utilcode.util.ConvertUtils;
+import com.blankj.utilcode.util.SPUtils;
 import com.nightonke.boommenu.BoomButtons.BoomButton;
 import com.nightonke.boommenu.BoomButtons.ButtonPlaceEnum;
 import com.nightonke.boommenu.BoomButtons.TextOutsideCircleButton;
@@ -139,7 +140,6 @@ public class MainActivity extends BaseActivity implements MvpView {
             @Override
             public void onBoomDidShow() {
                 mainPresenter.setBOBData();
-
             }
         });
     }
@@ -153,18 +153,47 @@ public class MainActivity extends BaseActivity implements MvpView {
 
         String currentLocation = mainPresenter.getLocationInfo();
 
-        mainPresenter.initCityLists();
+
+        SPUtils spUtils = SPUtils.getInstance("savedCity");
+        boolean isSuccessFull = spUtils.getBoolean("isSuccessFull", false);
+        if (isSuccessFull) {
+            for (int i = 0; i < 5; i++) {
+                C.CityNameConstant.citys.add(spUtils.getString("No_" + i));
+                Log.e("mainPresenter",""+spUtils.getString("No_" + i));
+            }
+        }else {
+            //无保存sp数据则初始化默认数据
+            mainPresenter.initCityLists();
+        }
+
 
         mUltraViewpageAdapter = new UltraViewpageAdapter(getSupportFragmentManager(), currentLocation);
         mUltraViewpageAdapter.initData();
         mViewPager.setAdapter(mUltraViewpageAdapter);
+
 
     }
 
     @Override
     public void unBind() {
         mainPresenter.detachView(this);
+
+
+        //在显示成功后保存数据到sp中
+        SPUtils spUtils = SPUtils.getInstance("savedCity");
+        int size = C.CityNameConstant.citys.size();
+        for (int i = 0; i < size; i++) {
+            spUtils.put("No_" + i, C.CityNameConstant.citys.get(i));
+        }
+
+        //保存成功
+        spUtils.put("isSuccessFull", true);
+
+
         EventBus.getDefault().unregister(this);
+
+
+
     }
 
     @Override
