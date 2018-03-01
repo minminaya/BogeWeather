@@ -13,6 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -27,6 +29,8 @@ public class WeatherItemFragment extends BaseFragment implements MvpView {
     private static final String TAG = "WeatherItemFragment_Log";
 
 
+    @BindView(R.id.ids_smart_refresh_layout)
+    public SmartRefreshLayout mSmartRefreshLayout;
     @BindView(R.id.ids_tv_temporary)
     public TextView mTvTemporary;
     @BindView(R.id.ids_tv_weather)
@@ -135,6 +139,9 @@ public class WeatherItemFragment extends BaseFragment implements MvpView {
 
     @Override
     public void iniView(View view) {
+
+        mSmartRefreshLayout.setEnableRefresh(false);
+
         mHourlyRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         mHourlyRecyclerViewAdapter = new HourlyRecyclerViewAdapter();
         mHourlyRecyclerView.setAdapter(mHourlyRecyclerViewAdapter);

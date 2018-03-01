@@ -6,6 +6,7 @@
     tools:context="cn.minminaya.bogeweather.mvp.function_main.fragment.WeatherItemFragment">
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/ids_smart_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:srlAccentColor="@android:color/white"
@@ -13,15 +14,12 @@
         app:srlEnableHeaderTranslationContent="false"
         app:srlPrimaryColor="#15A084">
 
-        <com.scwang.smartrefresh.header.WaveSwipeHeader
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
 
         <android.support.v4.widget.NestedScrollView
             android:id="@+id/ids_scroll_view_layout"
             android:layout_width="match_parent"
-            android:visibility="gone"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:visibility="gone">
 
 
             <LinearLayout
