@@ -37,6 +37,7 @@
 -keep public class * extends android.preference.Preference
 -keep public class * extends android.view.View
 -keep public class com.android.vending.licensing.ILicensingService
+-keep public class cn.minminaya.bogeweather.mvp.base.BaseFragment
 
 # 如果有引用android-support-v4.jar包，可以添加下面这行
 -keep public class com.xxxx.app.ui.fragment.** {*;}
@@ -58,8 +59,11 @@
     void *(**On*Event);
 }
 
+# 保留Annotation不混淆
+-keepattributes *Annotation*,InnerClasses
+
 # 保留实体类和成员不被混淆
--keep public class com.minminaya.bogeweather.data.http.model.** {
+-keep public class cn.minminaya.bogeweather.data.http.model.** {
     public void set*(***);
     public *** get*();
     public *** is*();
@@ -79,16 +83,10 @@
     @butterknife.* <methods>;
 }
 
-
-# -----------retrofit--------------
-# Retain generic type information for use by reflection by converters and adapters.
--keepattributes Signature
-# Retain service method parameters.
--keepclassmembernames,allowobfuscation interface * {
-    @retrofit2.http.* <methods>;
-}
-# Ignore annotation used for build tooling.
--dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
+#---------utilcode---------
+-keep class com.blankj.utilcode.** { *; }
+-keepclassmembers class com.blankj.utilcode.** { *; }
+-dontwarn com.blankj.utilcode.**
 
 
 #---------Glide-----------
@@ -99,13 +97,39 @@
   public *;
 }
 
-# for DexGuard only
-# -keepresourcexmlelements manifest/application/meta-data@value=GlideModule
 
-#---------utilcode---------
--keep class com.blankj.utilcode.** { *; }
--keepclassmembers class com.blankj.utilcode.** { *; }
--dontwarn com.blankj.utilcode.**
+# Gson
+-keepattributes Signature
+-keepattributes *Annotation*
+-keep class sun.misc.Unsafe { *; }
+-keep class com.google.gson.stream.** { *; }
+# 使用Gson时需要配置Gson的解析对象及变量都不混淆。不然Gson会找不到变量。
+# 将下面替换成自己的实体类
+-keep class cn.minminaya.bogeweather.data.http.model.** { *; }
+
+# RxJava RxAndroid
+-dontwarn sun.misc.**
+-keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
+    long producerIndex;
+    long consumerIndex;
+}
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
+    rx.internal.util.atomic.LinkedQueueNode producerNode;
+}
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueConsumerNodeRef {
+    rx.internal.util.atomic.LinkedQueueNode consumerNode;
+}
+
+# OkHttp3
+-dontwarn com.squareup.okhttp3.**
+-keep class com.squareup.okhttp3.** { *;}
+-dontwarn okio.**
+
+# Okio
+-dontwarn com.squareup.**
+-dontwarn okio.**
+-keep public class org.codehaus.* { *; }
+-keep public class java.nio.* { *; }
 
 
 #----------eventbus---------
@@ -119,3 +143,17 @@
 -keepclassmembers class * extends org.greenrobot.eventbus.util.ThrowableFailureEvent {
     <init>(java.lang.Throwable);
 }
+
+# -----------retrofit--------------
+# Retain generic type information for use by reflection by converters and adapters.
+-keepattributes Signature
+# Retain service method parameters.
+-keepclassmembernames,allowobfuscation interface * {
+    @retrofit2.http.* <methods>;
+}
+# Ignore annotation used for build tooling.
+-dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
+
+
+
+
